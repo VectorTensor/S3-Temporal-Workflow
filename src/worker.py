@@ -15,7 +15,7 @@ async def main():
         task_queue="s3-csv-task-queue",
         workflows=[S3CsvWorkflow],
         activities=[activities.download_csv,
-                    activities.mock_transform_csv, activities.upload_csv],
+                    activities.transform_csv, activities.upload_csv],
     )
 
     await worker.run()

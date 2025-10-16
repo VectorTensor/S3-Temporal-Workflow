@@ -7,6 +7,7 @@ with workflow.unsafe.imports_passed_through():
     from io import StringIO
 from temporalio import activity
 from dataclasses import dataclass
+import asyncio
 
 s3_client = boto3.client("s3")
 
@@ -33,7 +34,7 @@ async def transform_csv(csv_content: str) -> str:
     df.columns = [col.upper() for col in df.columns]
     # Add any other transformations here
     print(df.columns)
-
+    asyncio.sleep(30)
     df["INC"] = df["SALARY"] + 10
 
     output = StringIO()

@@ -55,3 +55,7 @@ class S3CsvWorkflow:
         )
 
         return f"CSV transformed and uploaded to {dest_bucket}/{dest_key}"
+
+    @workflow.signal
+    def special_data(self, input: int) -> None:
+        print(f"given data : {input}")
